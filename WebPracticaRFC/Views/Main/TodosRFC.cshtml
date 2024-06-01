@@ -1,0 +1,106 @@
+﻿@using WebPracticaRFC.Models
+@model E_ViewModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>TodosRFC</title>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container mt-3">
+
+        <form action="/Main/Buscar" method="post">
+            <div class="row">
+                <div class="col-6">
+                    <input type="text" name="busqueda" class="form-control" />
+                </div>
+                <div class="col-2">
+                    <input type="submit" value="Buscar" class="btn btn-primary" />
+                </div>
+
+            </div>
+        </form>
+
+        <div class="row mt-4">
+
+            <div class="col">
+                <div class="mb-3">
+                    <a href="/Main/irGenerarRFC" class="btn btn-success">Generar otro RFC</a>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="mb-3">
+                    <a href="/Main/irInicio" class="btn btn-success">Inicio</a>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="mb-3">
+                    <a href="/Main/irInicio" class="btn btn-success">Salir</a>
+                </div>
+            </div>
+        </div>
+
+        <p class="text-end">el numero de registros son <b>@Model.registros</b></p>
+
+        @if (TempData["error"] != null)
+        {
+            <div class="alert alert-danger">
+                @TempData["error"]
+            </div>
+        }
+        <table class="table mt-3">
+            <thead>
+                <tr>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Fecha Nacimiento</th>
+                    <th scope="col">RFC</th>
+                    <th scope="col">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (E_Persona persona in Model.ListaPersonas)
+                {
+
+
+
+
+                    <tr>
+                        <th scope="row">@persona.NombreCompleto</th>
+                        <td>@persona.FechaNacimiento.ToString("dd/MM/yyyy")</td>
+                        @if (persona.EsRepetido == true)
+                        {
+                            <td style="color:red;">@persona.RFC</td>
+                        }
+                        else
+                        {
+                            <td>@persona.RFC</td>
+                        }
+
+
+
+
+                        <td>
+                            <a href="/Main/ObtenerParaEditar?idRFC=@persona.idRFC" class="btn btn-primary">Editar</a>
+                            <a href="/Main/Eliminar?idRFC=@persona.idRFC" class="btn btn-danger">Eliminar</a>
+                        </td>
+                    </tr>
+                }
+
+
+            </tbody>
+        </table>
+
+
+
+    </div>
+</body>
+</html>

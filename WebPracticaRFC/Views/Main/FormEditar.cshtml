@@ -1,0 +1,49 @@
+﻿@using WebPracticaRFC.Models
+@model E_Persona
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>FormEditar</title>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container" style="width:500px;">
+        <h1 class="text-center">Editar</h1>
+
+        <form action="/Main/EditarRegistro" method="post">
+
+            <input type="hidden" class="form-label mb-3" name="idRFC" value="@Model.idRFC" />
+
+            <div class="mb-3">
+                <label class="form-label">Nombre(s):</label>
+                <input type="text" class="form-control" name="Nombre" value="@Model.Nombre">
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Apellido Paterno:</label>
+                <input type="text" class="form-control" name="ApellidoPat" value="@Model.ApellidoPat">
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Apellido Materno:</label>
+                <input type="text" class="form-control" name="ApellidoMat" value="@Model.ApellidoMat">
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Fecha Nacimiento:</label>
+                <input type="date" class="form-control" name="FechaNacimiento" value="@Model.FechaNacimiento.ToString("yyyy-MM-dd")">
+            </div>
+
+            <input type="submit" class="btn btn-success" value="Editar" />
+
+        </form>
+    </div>
+</body>
+</html>

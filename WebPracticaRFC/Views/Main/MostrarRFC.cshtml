@@ -1,0 +1,76 @@
+﻿@using WebPracticaRFC.Models
+@model E_Persona
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>MostrarRFC</title>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container mt-3" style="width:500px;">
+        @if (TempData["error"] != null)
+        {
+            <div class="alert alert-danger">
+                @TempData["error"]
+            </div>
+        }
+
+        @if (TempData["mensaje"] != null)
+        {
+            <div class="alert alert-success">
+                @TempData["mensaje"]
+            </div>
+        }
+        <div class="mb-3">
+            <label class="form-label">Tu RFC es:</label>
+            <input type="text" class="form-control" name="Nombre" value="@Model.RFC" disabled>
+        </div>
+
+        @*<div class="row align-items-center">
+
+        <div class="col">
+            <div class="mb-3 btn btn-success">
+                <a>Generar otro RFC</a>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="mb-3 btn btn-success">
+                <a>Ir a Base de Datos</a>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="mb-3 btn btn-success">
+                <a>Salir</a>
+            </div>
+        </div>*@
+
+        <div class="">
+            <div class="mb-3">
+                <a href="/Main/irGenerarRFC" class="btn btn-success">Generar otro RFC</a>
+            </div>
+
+
+
+            <div class="mb-3 position-relative">
+                <a href="/Main/IrTodosRFC" class="btn btn-success">Ir a Base de Datos</a>
+            </div>
+
+
+
+            <div class="mb-3 position-relative">
+                <a href="irInicio" class="btn btn-success">Salir</a>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>
